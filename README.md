@@ -11,12 +11,14 @@ A safety-critical, 4-channel moisture detection and automated emergency shutdown
 
 ---
 
-## ⚡ Hardware Architecture & Theory of Operation
+## ⚡ Hardware Architecture & Circuit Design
 
-1. **Sensing Frontend:** The PCB accepts up to 4 moisture probe leads connected via white JST headers. 
-2. **Signal Conditioning:** When water bridges the probe tips, resistance drops, allowing current to bias the onboard N-channel MOSFET (`Q1`).
-3. **Interrupt Trigger:** The transition pulls the `LEAK` output line `HIGH` ($3.3\text{V}/5\text{V}$), generating a rising-edge signal routed directly to the microcontroller's interrupt pin (`WATER_PIN`).
-4. **Kill-Switch Actuation:** The microcontroller instantly jumps to the ISR, driving the system kill switch (`KS_PIN`) `HIGH` to isolate power and kill thrusters within microseconds.
+The custom PCB acts as an analog signal-conditioning front-end that interfaces four subsea moisture probe channels with a Teensy microcontroller:
+
+1. **Sensing Interface:** Up to 4 moisture probe leads connect via white JST headers. In dry conditions, the air gap acts as an open circuit.
+2. **MOSFET Switching Logic:** When water bridges the probe tips, the resistance drops, pulling the gate of an on-board N-channel MOSFET (`Q1`) high and illuminating the status LED.
+3. **Signal Transition:** This switches the board's `LEAK` output line from `LOW` (0V) to `HIGH` ($3.3\text{V}/5\text{V}$), generating a rising-edge signal routed directly to the microcontroller's interrupt pin (`WATER_PIN`).
+4. **Kill-Switch Actuation:** The MCU instantly executes an ISR to drive the system kill switch (`KS_PIN`) `HIGH`, isolating power and cutting thrusters..
 
 ### Pin Mapping Overview
 | Pin Name | Direction | Function |
