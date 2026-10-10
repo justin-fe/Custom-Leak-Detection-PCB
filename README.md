@@ -36,6 +36,6 @@ Developed using **PlatformIO** and **C++**, utilizing fast digital I/O macros (`
 ---
 
 ## 🛠️ Tech Stack & Tools
-* **EDA Tool:** Altium Designer (Schematic Capture, Multi-Layer PCB Layout)[cite: 3, 4]
-* **Microcontroller:** Teensy (C++ / PlatformIO)[cite: 1, 2]
-* **Assembly:** Surface-Mount Device (SMD) Soldering, Multimeters, Oscilloscopes[cite: 3, 4]
+* **EDA Tool:** Altium Designer (Schematic Capture, Multi-Layer PCB Layout)
+* **Microcontroller:** Teensy (C++ / PlatformIO)
+* **Assembly:** Surface-Mount Device (SMD) Soldering, Multimeters, Oscilloscopes
